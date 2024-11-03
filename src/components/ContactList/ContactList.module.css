@@ -1,0 +1,30 @@
+.contact__list {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 1fr;
+	width: 100%;
+}
+
+@media (min-width: 998px) {
+	.contact__list {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1250px) {
+	.contact__list {
+		grid-template-columns: repeat(3, 1fr) ;
+	}
+}
+
+
+.contact__item{
+	max-height: 200px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	border: 1px solid var(--accent-color);
+	border-radius: 5px;
+	background-color: var(--background-color);
+}

@@ -1,0 +1,9 @@
+.search__box{
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.search__box {
+	width: 320px;	
+	}
+}
