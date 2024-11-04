@@ -1,0 +1,23 @@
+.userBtn {
+	display: flex;
+	justify-content: center;
+	max-width: 40px;
+	max-height: 40px;
+	background-color: var(--background-color);
+	border-radius: 5px;
+	border: 1px solid var(--accent-color);
+	transition: box-shadow 0.3s linear;
+	padding: 5px;
+      position: relative;
+	margin-left: 24px;
+	
+}
+
+.userIcon {
+	fill: var(--font-color);
+}
+
+.userBtn:hover,
+.userBtn:focus {
+	box-shadow: var(--box-shadow);
+}

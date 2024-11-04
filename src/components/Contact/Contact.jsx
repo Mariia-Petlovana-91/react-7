@@ -1,11 +1,12 @@
 import css from '../Contact/Contact.module.css';
 import { GrUserManager } from "react-icons/gr";
 import { FaPhone } from "react-icons/fa6";
-import { iconSize } from '../utils/iconSize';
-import { deleteContacts } from '../../redux/contactsSlice';
+import iconSize from '../../utils/iconSize';
 import { useDispatch } from 'react-redux';
+import thunkModule from '../../redux/contacts/contactsSlice';
 
-export default function Contact({ name = "Ім'я відсутнє", number = "Номер відсутній", id}) {
+export default function Contact({ name = "Ім'я відсутнє", number = "Номер відсутній", id }) {
+	const { apiDeleteContacts } = thunkModule;
 	const dispatch = useDispatch(); 
 	
 	return (
@@ -22,7 +23,7 @@ export default function Contact({ name = "Ім'я відсутнє", number = "�
 			</div>
 			<button className='btn'
 				type='button'
-				onClick={() => dispatch(deleteContacts(id))}>Delete
+				onClick={() => dispatch(apiDeleteContacts(id))}>Delete
 			</button>
 		</>
 	)

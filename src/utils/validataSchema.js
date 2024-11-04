@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 
-const phonePattern = /^\d{3}-\d{2}-\d{2}$/
+const phonePattern = /^\d{3}-\d{3}-\d{4}$/
 	
 const schemaValidate = Yup.object({
 	name: Yup.string()
@@ -10,7 +10,7 @@ const schemaValidate = Yup.object({
 		.required("поле Name не може бути пустим"),
 	number: Yup.string()
 		.required("поле Number не може бути пустим")
-		.matches(phonePattern, "Неправильний номер.Введіть номер у форматі 000-00-00"),
+		.matches(phonePattern, "Неправильний номер.Введіть номер у форматі 000-000-0000"),
 });
 
 export default schemaValidate;

@@ -1,25 +1,19 @@
 import css from './ContactForm.module.css';
-import schemaValidate from '../utils/validataSchema';
-import { nanoid } from 'nanoid';
+import schemaValidate from '../../utils/validataSchema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch} from 'react-redux';
-import { addContacts} from '../../redux/contactsSlice';
+import contactsModule from '../../redux/contacts/contactsSlice';
 
-export default function ContactForm() {
+export default function ContactForm({ setModalIsOpen }) {
 	
+	const { apiPostContacts} = contactsModule;
 	const dispatch = useDispatch();
 	
-	function onAddId(data) {
-         const finishAddContact = {
-            ...data,
-            id: nanoid(),
-      };
-         const action = addContacts(finishAddContact);
-         dispatch(action);
-      }
+	
       
-	function onSubmit(values, actions) {
-		onAddId(values);
+	function onSubmit(data, actions) {
+		dispatch(apiPostContacts(data));
+		setModalIsOpen();
 		actions.resetForm();
 		return;
 	}

@@ -1,7 +1,7 @@
 :root {
     --font-color: #fdfdfde1;
     --secondary-color: #f04980d8;
-    --accent-color:rgb(192, 25, 67);
+    --accent-color:rgb(168, 34, 67);
     --background-color:rgba(255, 255, 255, 0.116);
     --box-shadow: 0 6px 8px rgba(255, 255, 255, 0.589);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -100,6 +100,7 @@ img {
   border-radius: 4px;
   color: var(--font-color);
   transition: box-shadow 0.3s linear;
+  width: 100%;
 }
 
 .input:hover,

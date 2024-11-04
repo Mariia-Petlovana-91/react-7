@@ -1,9 +1,9 @@
 .section{
-	padding: 20px 40px 20px 40px;
+	padding: 24px 40px 20px 40px;
 }
 
 .section__title{
-	margin-bottom: 10px;
+	margin-bottom: 24px;
 	font-family: inherit;
 	font-size: 32px;
 	font-weight: 600;

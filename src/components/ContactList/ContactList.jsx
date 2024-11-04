@@ -1,18 +1,24 @@
 import css from './ContactList.module.css';
 import Contact from '../Contact/Contact';
-import {useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import filterContactsModule from '../../redux/contacts/contactsSlice';
+import { useEffect } from 'react';
+import thunkModule from '../../redux/contacts/contactsSlice';
 
+const { apiGetContacts} = thunkModule;
+const { selectFilteredContacts } = filterContactsModule;
 
 export default function ContactList() {
-    const selectContacts = useSelector((state) => state.contactsData.contacts);
-    const selectNameFilter = useSelector((state) => state.filtersData.filters);
-    const filteredContacts = selectContacts.filter((contact) =>
-        contact.name.toLowerCase().includes(selectNameFilter.toLowerCase().trim())
-    );
+    const filteredContacts = useSelector(selectFilteredContacts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(apiGetContacts());
+    }, [dispatch])
 
     return (
         <ul className={css.contact__list}>
-            {filteredContacts.map((ar) => (
+            {Array.isArray(filteredContacts)&& filteredContacts.map((ar) => (
                 <li className={css.contact__item} key={ar.id}>
                     <Contact
                         name={ar.name}
