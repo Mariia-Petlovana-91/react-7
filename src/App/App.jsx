@@ -3,8 +3,10 @@ import css from '../App/App.module.css';
 import { Toaster } from 'react-hot-toast';
 
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import selectModule from '../redux/contacts/selectorsContacts';
+import thunkModule from '../redux/contacts/contactsSlice';
+
 
 import Section from '../components/Section/Section';
 import SearchBox from '../components/SearchBox/SearchBox';
@@ -17,9 +19,18 @@ import NotFound from '../components/NotFound/NotFound'
 
 
 export default function App() {
+  const dispatch = useDispatch();
+  const { apiGetContacts } = thunkModule;
+  const { error } = selectModule;
+  const { isLoading } = selectModule;
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const isLoading = useSelector(selectModule.isLoading);
-  const error = useSelector(selectModule.error);
+  const isLoad = useSelector(isLoading);
+  const isError = useSelector(error);
+
+  useEffect(() => {
+    dispatch(apiGetContacts());
+  }, [dispatch]);
+
     function openModal() {
       setModalIsOpen(true);
   }
@@ -45,9 +56,9 @@ export default function App() {
         <AddUser isOpen={openModal} />
       </header>
       <Section title={"Phone Book"}>
-       {isLoading && <Loader />} 
+       {isLoad && <Loader />} 
         <ContactList />
-        {error&&<NotFound/>}
+        {isError&&<NotFound/>}
       </Section>
       <AddModal
         onRequestClose={closeModal}
